@@ -1,0 +1,5 @@
+# c, cpp, h 제외하고, 모두 git에 올리지 않음
+proj1/*
+!proj1/*.c
+!proj1/*.cpp
+!proj1/*.h
