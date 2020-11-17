@@ -1,12 +1,30 @@
-#include <cstdio>
-#include <iostream>
+#pragma once
+// utf-8
 
-// using namespace std;
+#include "share.h"
+#include "text_editor.h"
+#include "ui.h"
+#include "file_manager.h"
+#include "dec_enc.h"
 
+using namespace std;
+
+/*
+* UI 작업 후, main에 이식해 주세요
+*/
 int main() {
-
+    // utf-8로 인코딩 되어있어, c, c++에서는 한글이 깨집니다.
+    // 한글이 깨지지 않았다면, 파일이 ANSI로 인코딩 되어있는 것입니다.
+    // 주석은 상관 없지만, 일단 txt 문서에 사용되는 언어는 영어로 제한하겠습니다.
+    // 추후에 한글로 확장하겠습니다.
+    // 또한 UI 제작시, printf, cout 등 출력은 일단 영어를 사용해주세요
     printf("Hello World\n");
-    std::cout << "Hello World\n";
+    cout << "Hello World\n";
+
+    printf("안녕 세계야\n");
+    cout << "안녕 세계야\n";
+
+
 
     return 0;
 }
