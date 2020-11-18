@@ -5,7 +5,7 @@
 #include "text_editor.h"
 #include "ui.h"
 #include "file_manager.h"
-#include "dec_enc.h"
+#include "enc_dec.h"
 
 using namespace std;
 
