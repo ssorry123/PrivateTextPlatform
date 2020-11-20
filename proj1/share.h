@@ -9,14 +9,27 @@
 
 #include <cstdio>   // 또는 #include <stdio.h>
 #include <iostream>
+#include <vector>
 #include <string>
 
+#define print_func() std::cout << "\n   FUNCNAME : " << __FUNCTION__ << endl;
 
+using namespace std;
+
+
+// file operation flag
+enum class SHARE_FILE_FLAG {
+    TXT_ENCRYPTION, // 암호화
+    TXT_DECRYPTION, // 복호화
+    TXT_CAT,        // TXT 보기
+    OPEN_EDITOR,    // 에디터 열기
+};
 
 
 
 // 파일 인코딩 관련
-/* visual studio에서 파일 기본 생성시 
+/*
+* visual studio에서 파일 기본 생성시  
 * 인코딩 ANSI로 생성됩니다.
 * 
 * 저희는 인코딩을 utf-8을 사용합니다.
@@ -32,6 +45,7 @@
 * 
 * 그러므로, txt 파일 또한 utf-8 인코딩을 사용하겠습니다.
 */
+
 
 // 0. 헤더 파일에 선언된 함수를 구현할 때, xxx_1에 추가로 xxx_2, xxx_3 등
 //    개인에 맞게 여러 곳에 구현하여도 됩니다.
