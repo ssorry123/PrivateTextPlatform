@@ -6,3 +6,11 @@
 <br>
 
 ---
+
+---
+- v0.11 기본 뼈대  
+![Screenshot](/proj1/imgs/v0.11기본뼈대.PNG)
+
+<br>
+
+---
