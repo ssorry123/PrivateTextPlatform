@@ -1,14 +1,12 @@
 #pragma once
 // utf-8
-/*
-* file_manager.h 에서 선언된 함수를
-* 이곳에서 구현해 주세요
-*/
+//* file_manager.h 에서 선언된 함수를
+//* 이곳에서 구현해 주세요
+
 #include "share.h"
 #include "file_manager.h"
 #include "enc_dec.h"
 #include "text_editor.h"
-
 
 int call_file_manager(string txt_path, SHARE_FILE_FLAG flag, int password) {
     print_func();
@@ -36,3 +34,4 @@ int call_file_manager(string txt_path, SHARE_FILE_FLAG flag, int password) {
     fclose(fp);
     return 0;
 }
+

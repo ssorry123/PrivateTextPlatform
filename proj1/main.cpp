@@ -1,18 +1,14 @@
 #pragma once
 // utf-8
 
-
 #include "share.h"  // 참고해주세요
-// #include "text_editor.h"
 #include "ui.h"
 #include "file_manager.h"
 // #include "enc_dec.h"
+// #include "text_editor.h"
 
-using namespace std;
 
-/*
-* UI 작업 후, main에 이식해 주세요
-*/
+//* UI 작업 후, main에 이식해 주세요
 int main() {
     print_func();
     // utf-8로 인코딩 되어있어, c, c++에서는 한글이 깨집니다.
