@@ -1,4 +1,3 @@
-#pragma once
 // utf-8
 
 #include "share.h"  // 참고해주세요
