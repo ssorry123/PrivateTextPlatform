@@ -33,22 +33,6 @@
 
 <br>
 
----
-
-### ㅁ With
-- syd03160@gmail.com  
-    project manager,  
-    v0.x File Management
-- quizhong123@gmail.com  
-    study manager,  
-    v0.x Text Editor
-- korhwngml123@naver.com  
-    v0.x UI
-- lamp0525@naver.com  
-    v0.x Text Enc/Decryption  
-
-
-<br>
 
 ---
 
