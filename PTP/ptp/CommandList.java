@@ -1,13 +1,21 @@
-package ui;
+package ptp;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandList {
+/**
+ * Command와 관련된 정적 메소드를 지원,
+ * 객체 생성은 불가능
+ * @author 26060
+ *
+ */
+
+class CommandList {
     // 외부에서 객체 생성 불가능
     private CommandList() {
 
     }
+    
 
     // 로드 시 기본 생성
     private static Map<String, Command> comList;
@@ -18,16 +26,13 @@ public class CommandList {
 
         int idx = 0;
 
-        command = "pwd";
-        explain = "현재 디렉토리의 절대 경로";
-        comList.put(command, new Command(command, explain, idx++));
-
         command = "ls";
         explain = "현재 디렉토리에 존재하는 모든 파일 표시";
         comList.put(command, new Command(command, explain, idx++));
 
         command = "cd";
-        explain = "cd A\n" + "A 디렉토리로 이동";
+        explain = "cd A\n" + "현재 디렉토리의 A 디렉토리로 이동\n" ;
+        explain += "cd ..\n상위 디렉토리로 이동";
         comList.put(command, new Command(command, explain, idx++));
 
         command = "cat";
