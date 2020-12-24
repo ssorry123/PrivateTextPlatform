@@ -13,13 +13,14 @@ ptp : 메인 패키지
         + Command[]:getAllCommand()
         + Command:getCommand(String)
         
-    * 작업 디렉토리 관련
     * WorkingDirectory 클래스
+        작업 디렉토리 관리
     
-    * 명령어 실행 관련
     * Help 클래스
         help명령어 입력시 실행됨
         
+    * cat 클래스
+        cat명령어 입력시 실행됨
 
 textEditor
 textEncDec

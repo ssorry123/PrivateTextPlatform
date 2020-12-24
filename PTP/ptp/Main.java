@@ -46,7 +46,11 @@ public class Main {
             }
             // cat
             else if (op.equalsIgnoreCase("cat")) {
-
+                if (opArr.length < 2) {
+                    println("No such txt File");
+                    continue;
+                }
+                Cat.cat(workingDirectory, opArr[1]);
             }
             // ls
             else if (op.equalsIgnoreCase("ls")) {
@@ -55,7 +59,8 @@ public class Main {
             // cd
             else if (op.equalsIgnoreCase("cd")) {
                 if (opArr.length < 2) {
-                    println("No such Directory");
+                    println("Go default path");
+                    workingDirectory = new WorkingDirectory();
                     continue;
                 }
                 String arg = opArr[1];

@@ -11,6 +11,14 @@ public class WorkingDirectory {
     private File workFile;
     private String workPath;
 
+    public File getWorkFile() {
+        return workFile;
+    }
+
+    public String workPath() {
+        return workPath;
+    }
+
     /**
      * 현재 디렉터리 경로 정보를 가진 클래스 생성
      */
@@ -49,7 +57,7 @@ public class WorkingDirectory {
         List<String> dirs = new ArrayList<>();
         List<String> files = new ArrayList<>();
 
-        String msgFormat = "{0} : {1}\n";   // 굳이 메세지 포맷 사용
+        String msgFormat = "{0} : {1}\n"; // 굳이 메세지 포맷 사용
 
         String tmp;
         for (File file : workFile.listFiles()) {
