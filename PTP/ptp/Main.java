@@ -1,5 +1,7 @@
 package ptp;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -14,22 +16,28 @@ public class Main {
         System.out.println(t);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         // TODO Auto-generated method stub
         System.out.println("Hello World, ptp demo");
         System.out.println("enter \"help\"");
-
-        Scanner sc = new Scanner(System.in);
 
         // 작업디렉토리 관리 객체 생성
         WorkingDirectory workingDirectory;
         workingDirectory = new WorkingDirectory();
 
+        UserCommand userCommand = new UserCommand();
+
         // 명령어 대소문자 상관 없음.
         while (true) {
-            System.out.print(workingDirectory.getPwd() + " >> ");
-            String[] opArr = sc.nextLine().split(" ");
+            if (userCommand.getAllowInput())
+                System.out.print(workingDirectory.getPwd() + " >> ");
+
+            userCommand.inputCommand(); // 명령어 입력받기
+            String[] opArr = userCommand.getCommand(); // 명령어 가져오기
+            if (opArr == null)
+                continue;
             String op = opArr[0];
+            // System.out.println(Arrays.toString(opArr));
 
             // 쉘 탈출
             if (op.equalsIgnoreCase("exit")) {
@@ -38,42 +46,38 @@ public class Main {
 
             // help 명령어
             if (op.equalsIgnoreCase("help")) {
-                println(Help.help());
+                Help.help();
             }
             // 파일 에디터로 열기
             else if (op.equalsIgnoreCase("open")) {
-
+                Open.open(workingDirectory, userCommand, opArr[1], false);
             }
             // cat
             else if (op.equalsIgnoreCase("cat")) {
-                if (opArr.length < 2) {
-                    println("No such txt File");
-                    continue;
-                }
                 Cat.cat(workingDirectory, opArr[1]);
             }
             // ls
             else if (op.equalsIgnoreCase("ls")) {
-                println(workingDirectory.ls());
+                workingDirectory.ls();
             }
             // cd
             else if (op.equalsIgnoreCase("cd")) {
-                if (opArr.length < 2) {
+                if (opArr[1] == "") {
                     println("Go default path");
                     workingDirectory = new WorkingDirectory();
                     continue;
                 }
-                String arg = opArr[1];
-                if (arg.equals("..")) {
+                //
+                else if (opArr[1].equals("..")) {
                     workingDirectory.setPwdToParent();
                 }
-                /*
-                 * 절대경로를 입력하였는가? 상대경로를 입력하였는가? 상대경로를 입력했다고 가정
-                 */
-                else if (arg.equals(".")) {
+                //
+                else if (opArr[1].equals(".")) {
                     continue;
-                } else {
-                    workingDirectory.cdDir(arg);
+                }
+                //
+                else {
+                    workingDirectory.cdDir(opArr[1]);
                 }
             }
             // 맞는 명령이 없을 경우
@@ -83,7 +87,6 @@ public class Main {
 
         }
 
-        sc.close();
         System.out.println("ByeBye World, ptp demo");
 
     }

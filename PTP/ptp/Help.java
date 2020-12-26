@@ -1,5 +1,8 @@
 package ptp;
 
+import java.util.Collections;
+import java.util.Map;
+
 /**
  * help 명령어 입력시 실행되는 정적 메소드
  * 
@@ -12,17 +15,16 @@ class Help {
 
     }
 
-    public static String help() {
-        Command[] comList = CommandList.getAllCommands();
+    public static void help() {
+        Map<String, String> list = CommandList.getCommandListWithHelp();
+        // 명령어 알파벳순 정렬 나중에 추가
 
-        String ret = "";
-        for (Command com : comList) {
-            ret += "\"" + com.name + "\"\n";
-            ret += com.explain + "\n";
-            ret += "index=" + com.index + "\n\n";
+        for (Map.Entry<String, String> entry : list.entrySet()) {
+            String ret = "";
+            ret += "\"" + entry.getKey() + "\"\n";
+            ret += entry.getValue() + "\n";
+            System.out.println(ret);
         }
-
-        return ret;
     }
 
 }

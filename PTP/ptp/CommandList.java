@@ -1,11 +1,11 @@
 package ptp;
 
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Command와 관련된 정적 메소드를 지원,
- * 객체 생성은 불가능
+ * Command와 관련된 정적 메소드를 지원, 객체 생성은 불가능
+ * 
  * @author 26060
  *
  */
@@ -15,61 +15,58 @@ class CommandList {
     private CommandList() {
 
     }
-    
 
     // 로드 시 기본 생성
-    private static Map<String, Command> comList;
+    // private static Map<String, Command> comList;
+    private static Map<String, String> comHelp;
+
     static {
-        comList = new HashMap<>();
-        String command;
-        String explain;
+        comHelp = new Hashtable<>(); // thread safe
+        String str;
 
-        int idx = 0;
+        comHelp.put(Command.help.name(), "");
 
-        command = "ls";
-        explain = "현재 디렉토리에 존재하는 모든 파일 표시";
-        comList.put(command, new Command(command, explain, idx++));
+        str = "현재 디렉토리에 존재하는 모든 파일 표시";
+        comHelp.put(Command.ls.name(), str);
 
-        command = "cd";
-        explain = "cd A\n" + "현재 디렉토리의 A 디렉토리로 이동\n" ;
-        explain += "cd ..\n상위 디렉토리로 이동";
-        comList.put(command, new Command(command, explain, idx++));
+        str = "cd A\n";
+        str += "\t 현재 디렉토리의 A 디렉토리로 이동\n";
+        str += "cd ..\n";
+        str += "\t 현재 디렉토리의 상위 디렉토리로 이동\n";
+        str += "cd\n";
+        str += "\t 기본 디렉토리로 이동";
+        comHelp.put(Command.cd.name(), str);
 
-        command = "cat";
-        explain = "cat A.txt\n" + "A.txt를 있는 그대로 보여준다";
-        comList.put(command, new Command(command, explain, idx++));
+        str = "cat A.txt\n";
+        str += "\tA.txt를 있는 그대로 보여준다";
+        comHelp.put(Command.cat.name(), str);
 
-        command = "open";
-        explain = "open A.txt\n" + "A.txt를 에디터로 연다";
-        comList.put(command, new Command(command, explain, idx++));
+        str = "open A.txt\n";
+        str += "\tA.txt를 에디터로 연다";
+        comHelp.put(Command.open.name(), str);
 
-        command = "enc";
-        explain = "enc A.txt B.txt\n" + "A.txt를 암호화하여 B.txt로 저장";
-        comList.put(command, new Command(command, explain, idx++));
+        str = "enc A.txt B.txt\n";
+        str += "\tA.txt를 암호화하여 B.txt로 저장";
+        comHelp.put(Command.enc.name(), str);
 
-        command = "dec";
-        explain = "dec A.txt B.txt\n" + "A.txt를 복호화하여 B.txt로 저장";
-        comList.put(command, new Command(command, explain, idx++));
+        str = "dec A.txt B.txt\n";
+        str += "\tA.txt를 복호화하여 B.txt로 저장";
+        comHelp.put(Command.dec.name(), str);
+
+        str = "프로그램 종료";
+        comHelp.put(Command.exit.name(), str);
 
     }
 
-    // 모든 명령어 객체 반환
-    public static Command[] getAllCommands() {
-        Command[] ret = new Command[comList.size()];
+    public static Map<String, String> getCommandListWithHelp() {
+        return comHelp;
+    }
 
-        int idx = 0;
-        for (Map.Entry<String, Command> entry : comList.entrySet()) {
-            ret[idx++] = entry.getValue();
+    public static boolean checkCommand(String command) {
+        // 대소문자 상관없이 명령어 받아주자
+        if (comHelp.containsKey(command.toLowerCase())) {
+            return true;
         }
-        return ret;
+        return false;
     }
-
-    // commandName에 해당하는 Command 객체 반환
-    public static Command getCommand(String commandName) {
-        if (comList.containsKey(commandName)) {
-            return comList.get(commandName);
-        }
-        return null;
-    }
-
 }

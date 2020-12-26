@@ -1,3 +1,15 @@
+### 2020-12-26
+```
+Command 클래스에서 Command Enum으로 수정
+CommandList 클래스 수정
+
+UserCommand 클래스 추가 (main 동작방식 수정)
+Open 클래스 추가
+
+
+c++ 프로젝트 삭제
+```
+
 ### 2020-12-22
 ```
 cd 명령어 기능 추가

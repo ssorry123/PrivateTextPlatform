@@ -6,3 +6,8 @@ testFile
 
 @#%$^&
 
+
+asdf
+xzcv
+qwer
+asdf

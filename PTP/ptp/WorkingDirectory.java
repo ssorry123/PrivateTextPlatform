@@ -50,9 +50,9 @@ public class WorkingDirectory {
     }
 
     /**
-     * @return 현재작업디렉토리의 파일과 디렉토리들
+     * @return 현재작업디렉토리의 파일과 디렉토리들 출력
      */
-    public String ls() {
+    public void ls() {
         String ret = "";
         List<String> dirs = new ArrayList<>();
         List<String> files = new ArrayList<>();
@@ -81,7 +81,7 @@ public class WorkingDirectory {
         for (String str : files)
             ret += str;
 
-        return ret;
+        System.out.println(ret);
     }
 
     /**
