@@ -21,16 +21,16 @@ public class Main {
         System.out.println("Hello World, ptp demo");
         System.out.println("enter \"help\"");
 
-        // 작업디렉토리 관리 객체 생성
-        WorkingDirectory workingDirectory;
-        workingDirectory = new WorkingDirectory();
+//        // 작업디렉토리 관리 객체 생성
+//        WorkDirectory workingDirectory;
+//        workingDirectory = new WorkDirectory();
 
         UserCommand userCommand = new UserCommand();
 
         // 명령어 대소문자 상관 없음.
         while (true) {
             if (userCommand.getAllowInput())
-                System.out.print(workingDirectory.getPwd() + " >> ");
+                System.out.print(WorkDir.getPwd() + " >> ");
 
             userCommand.inputCommand(); // 명령어 입력받기
             String[] opArr = userCommand.getCommand(); // 명령어 가져오기
@@ -50,26 +50,30 @@ public class Main {
             }
             // 파일 에디터로 열기
             else if (op.equalsIgnoreCase("open")) {
-                Open.open(workingDirectory, userCommand, opArr[1], false);
+                Open.open(userCommand, opArr[1], false);
             }
             // cat
             else if (op.equalsIgnoreCase("cat")) {
-                Cat.cat(workingDirectory, opArr[1]);
+                Cat.cat(opArr[1]);
             }
             // ls
             else if (op.equalsIgnoreCase("ls")) {
-                workingDirectory.ls();
+                WorkDir.ls();
+                //Ls.ls(workingDirectory.getWorkFile());
+                // workingDirectory.ls();
             }
             // cd
             else if (op.equalsIgnoreCase("cd")) {
                 if (opArr[1] == "") {
                     println("Go default path");
-                    workingDirectory = new WorkingDirectory();
+                    // workingDirectory = new WorkDirectory();
+                    WorkDir.setDefaultWorkDir();
                     continue;
                 }
                 //
                 else if (opArr[1].equals("..")) {
-                    workingDirectory.setPwdToParent();
+                    // workingDirectory.setPwdToParent();
+                    WorkDir.setWorkDirToParent();
                 }
                 //
                 else if (opArr[1].equals(".")) {
@@ -77,7 +81,8 @@ public class Main {
                 }
                 //
                 else {
-                    workingDirectory.cdDir(opArr[1]);
+                    // workingDirectory.cdDir(opArr[1]);
+                    WorkDir.cdDir(opArr[1]);
                 }
             }
             // 맞는 명령이 없을 경우
